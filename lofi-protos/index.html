@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    :root {
+      --bs-link-color: #8c52ff;
+      --bs-link-hover-color: #8c52ff;
+    }
+    .add-item-row {
+      font-weight: bold;
+    }
+    .calendar {
+      width: fit-content;
+      border: solid 1px #adb5bd;
+      min-width: 21em;
+    }
+    .cal-date {
+      border: solid 0.5px #adb5bd;
+      width: 6em;
+      padding: 0.5em;
+    }
+    .cal-row {
+      height: 6em;
+    }
+    .checkbox-col {
+      width: 2.5em;
+    }
+    .habit-list {
+      width: 30em;
+      min-width: 20em;
+    }
+    .list-emoji {
+      margin-right: 0.5em;
+    }
+    .list-group-item {
+      height: 3em;
+    }
+    .nav-pills {
+      --bs-nav-pills-border-radius: 0 !important;
+      --bs-nav-pills-link-active-bg: #8c52ff;
+    }
+    .navigation {
+      height: 3em;
+    }
+    .vr {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  </style>
+  <body>
+    <div class="navigation d-flex"></div>
+    <div class="d-flex">
+      <div class="habit-list m-2">
+        <ul class="nav nav-pills nav-fill mb-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Good Habits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bad Habits</a>
+          </li>
+        </ul>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item add-item-row d-flex align-items-center">
+            <div class="checkbox-col">View</div>
+            <div class="vr" style="color: #adb5bd; width: 1.5px"></div>
+            <div class="list-emoji">➕</div>
+            <p class="m-0">Add new item</p>
+          </li>
+          <li class="list-group-item d-flex align-items-center">
+            <input class="checkbox-col" type="checkbox" />
+            <div class="vr" style="color: #adb5bd; width: 1.5px"></div>
+            <div class="list-emoji">👨‍🍳</div>
+            <p class="m-0">Cooked at home</p>
+          </li>
+          <li class="list-group-item d-flex align-items-center">
+            <input class="checkbox-col" type="checkbox" />
+            <div class="vr" style="color: #adb5bd; width: 1.5px"></div>
+            <div class="list-emoji">🏋️</div>
+            <p class="m-0">Went to the gym</p>
+          </li>
+        </ul>
+      </div>
+      <div class="calendar container">
+        <div class="cal-row row">
+          <div class="cal-date col">
+            <p class="date-num"></p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num"></p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num"></p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">1</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">2</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">3</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">4</p>
+          </div>
+        </div>
+        <div class="cal-row row">
+          <div class="cal-date col">
+            <p class="date-num">5</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">6</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">7</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">8</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">9</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">10</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">11</p>
+          </div>
+        </div>
+        <div class="cal-row row">
+          <div class="cal-date col">
+            <p class="date-num">12</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">13</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">14</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">15</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">16</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">17</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">18</p>
+          </div>
+        </div>
+        <div class="cal-row row">
+          <div class="cal-date col">
+            <p class="date-num">19</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">20</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">21</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">22</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">23</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">24</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">25</p>
+          </div>
+        </div>
+        <div class="cal-row row">
+          <div class="cal-date col">
+            <p class="date-num">26</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">27</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">28</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">29</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">30</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num">31</p>
+          </div>
+          <div class="cal-date col">
+            <p class="date-num"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

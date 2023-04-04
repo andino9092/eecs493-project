@@ -1,0 +1,50 @@
+:root {
+  --bs-link-color: #8c52ff;
+  --bs-link-hover-color: #8c52ff;
+}
+.add{
+  text-decoration: none;
+}
+.add-item-row {
+  font-weight: bold;
+}
+.calendar {
+  width: fit-content;
+  border: solid 1px #adb5bd;
+  min-width: 21em;
+}
+.cal-date {
+  border: solid 0.5px #adb5bd;
+  width: 6em;
+  padding: 0.5em;
+}
+.cal-row {
+  height: 6em;
+}
+.checkbox-col {
+  width: 2.5em;
+}
+.habit-list {
+  width: 30em;
+  min-width: 20em;
+}
+.list-emoji {
+  margin-right: 0.5em;
+}
+.list-group-item {
+  height: 3em;
+}
+.nav-link:hover {
+  cursor: pointer;
+}
+.nav-pills {
+  --bs-nav-pills-border-radius: 0 !important;
+  --bs-nav-pills-link-active-bg: #8c52ff;
+}
+.navigation {
+  height: 3em;
+}
+.vr {
+  margin-left: 1em;
+  margin-right: 1em;
+}

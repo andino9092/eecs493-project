@@ -5,7 +5,7 @@ class Habit {
     this.view = true;
     this.records = new Set();
   }
-  
+
   addLog(date) {
     this.records.add(date);
   }

@@ -1,125 +1,108 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import CalendarDay from "./CalendarDay";
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 function Calendar(props) {
+  const [calendar, setCalendar] = useState([[]]);
+
+  useEffect(() => {
+    setCalendar(buildCalendar(props.date));
+  }, [props.date]);
+
+  const decrMonth = () => {
+    return props.date.setMonth(props.date.getMonth() - 1);
+  };
+
+  const incrMonth = () => {
+    return props.date.setMonth(props.date.getMonth() + 1);
+  };
+
+  const buildCalendar = (date) => {
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    let increment = 1;
+
+    const calendar = [];
+
+    while (increment <= lastDay.getDate()) {
+      calendar.push([]);
+      for (let i = 0; i < 7; ++i) {
+        if (increment === 1 && i < firstDay.getDay()) {
+          calendar[calendar.length - 1].push("");
+        } else if (increment <= lastDay.getDate()) {
+          calendar[calendar.length - 1].push(String(increment));
+          increment += 1;
+        } else {
+          calendar[calendar.length - 1].push("");
+        }
+      }
+    }
+
+    console.log("built new calendar");
+
+    return calendar;
+  };
+
   return (
     <div className="calendar container">
-      <div className="cal-row row">
-        <div className="cal-date col">
-          <p className="date-num"></p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num"></p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num"></p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">1</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">2</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">3</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">4</p>
-        </div>
+      <div className="d-flex justify-content-between align-items-center">
+        <h3
+          className="arrow"
+          onClick={() => props.setCalendarMonth(new Date(decrMonth()))}
+        >
+          &#60;
+        </h3>
+        <h4 className="cal-month">
+          {months[props.date.getMonth()]} {props.date.getFullYear()}
+        </h4>
+        <h3
+          className="arrow"
+          onClick={() => props.setCalendarMonth(new Date(incrMonth()))}
+        >
+          &#62;
+        </h3>
       </div>
-      <div className="cal-row row">
-        <div className="cal-date col">
-          <p className="date-num">5</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">6</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">7</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">8</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">9</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">10</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">11</p>
-        </div>
-      </div>
-      <div className="cal-row row">
-        <div className="cal-date col">
-          <p className="date-num">12</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">13</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">14</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">15</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">16</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">17</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">18</p>
-        </div>
-      </div>
-      <div className="cal-row row">
-        <div className="cal-date col">
-          <p className="date-num">19</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">20</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">21</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">22</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">23</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">24</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">25</p>
-        </div>
-      </div>
-      <div className="cal-row row">
-        <div className="cal-date col">
-          <p className="date-num">26</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">27</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">28</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">29</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">30</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num">31</p>
-        </div>
-        <div className="cal-date col">
-          <p className="date-num"></p>
-        </div>
+      <div className="cal container">
+        {calendar.map((week, weekind) => {
+          return (
+            <div className="cal-row row" key={"cal-week-" + weekind}>
+              {week.map((day, dayind) => (
+                <CalendarDay
+                  day={day}
+                  date={props.date}
+                  key={"cal-" + weekind + "-" + dayind}
+                />
+              ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+Calendar.propTypes = {
+  date: PropTypes.instanceOf(Date),
+  setCalendarMonth: PropTypes.func.isRequired,
+  viewHabitsList: PropTypes.array.isRequired,
+  updateItemList: PropTypes.func.isRequired,
+  selectedHabit: PropTypes.number.isRequired,
+};
 
 export default Calendar;

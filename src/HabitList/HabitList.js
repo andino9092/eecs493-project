@@ -4,6 +4,9 @@ import ListItem from "./ListItem";
 import HabitTypeRadio from "./HabitTypeRadio";
 
 function HabitList(props) {
+  const habitsToRender = props.habitTypeRadio
+    ? props.itemList.goodHabits
+    : props.itemList.badHabits;
   const toggleItemView = (ind, category) => {
     props.updateItemList((itemList) => {
       category
@@ -30,21 +33,15 @@ function HabitList(props) {
           </span>
           <p className="m-0">Add new item</p>
         </li>
-        {props.habitTypeRadio
-          ? props.itemList.goodHabits.map((habit, index) => (
-              <ListItem
-                habit={habit}
-                key={index}
-                toggleItemView={() => toggleItemView(index, true)}
-              />
-            ))
-          : props.itemList.badHabits.map((habit, index) => (
-              <ListItem
-                habit={habit}
-                key={index}
-                toggleItemView={() => toggleItemView(index, false)}
-              />
-            ))}
+        {habitsToRender.map((habit, index) => (
+          <ListItem
+            habit={habit}
+            toggleItemView={() => toggleItemView(index, true)}
+            highlighted={props.selectedHabit === index}
+            setSelectedHabit={() => props.setSelectedHabit(index)}
+            key={index}
+          />
+        ))}
       </ul>
     </div>
   );
@@ -53,6 +50,8 @@ function HabitList(props) {
 HabitList.propTypes = {
   itemList: PropTypes.object.isRequired,
   updateItemList: PropTypes.func.isRequired,
+  selectedHabit: PropTypes.number.isRequired,
+  setSelectedHabit: PropTypes.func.isRequired,
   habitTypeRadio: PropTypes.bool.isRequired,
   changeHabitType: PropTypes.func.isRequired,
 };

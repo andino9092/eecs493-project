@@ -5,6 +5,8 @@ import Calendar from "./Calendar/Calendar";
 
 function App() {
   const [habitTypeRadio, setHabitTypeRadio] = useState(true);
+  const [selectedHabit, setSelectedHabit] = useState(0);
+  const [calendarMonth, setCalendarMonth] = useState(new Date());
   const [itemList, setItemList] = useState({
     goodHabits: [
       new Habit("Cooked at home", "👨‍🍳"),
@@ -23,11 +25,12 @@ function App() {
     const newItemList = { ...itemList };
     func(newItemList);
     setItemList(newItemList);
-    console.log(itemList)
+    console.log(itemList);
   };
 
   const changeHabitType = () => {
     setHabitTypeRadio(!habitTypeRadio);
+    setSelectedHabit(0);
   };
 
   return (
@@ -37,12 +40,19 @@ function App() {
         <HabitList
           itemList={itemList}
           updateItemList={updateItemList}
+          selectedHabit={selectedHabit}
+          setSelectedHabit={setSelectedHabit}
           habitTypeRadio={habitTypeRadio}
           changeHabitType={changeHabitType}
         />
         <Calendar
-          viewHabitsList ={habitTypeRadio ? itemList.goodHabits : itemList.badHabits}
+          date={calendarMonth}
+          setCalendarMonth={setCalendarMonth}
+          viewHabitsList={
+            habitTypeRadio ? itemList.goodHabits : itemList.badHabits
+          }
           updateItemList={updateItemList}
+          selectedHabit={selectedHabit}
         />
       </div>
     </div>

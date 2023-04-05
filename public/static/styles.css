@@ -2,14 +2,23 @@
   --bs-link-color: #8c52ff;
   --bs-link-hover-color: #8c52ff;
 }
-.add{
+.add {
   text-decoration: none;
 }
 .add-item-row {
   font-weight: bold;
 }
+.arrow {
+  color: gray;
+  cursor: pointer;
+}
+.arrow:hover {
+  color: #adb5bd;
+}
 .calendar {
   width: fit-content;
+}
+.cal {
   border: solid 1px #adb5bd;
   min-width: 21em;
 }
@@ -18,11 +27,27 @@
   width: 6em;
   padding: 0.5em;
 }
+.cal-month {
+  text-align: center;
+}
 .cal-row {
   height: 6em;
 }
 .checkbox-col {
   width: 2.5em;
+}
+.date-num {
+  height: 1.75em;
+  width: 1.75em;
+  text-align: center;
+  margin-left: -0.25em;
+  justify-content: center;
+}
+.date-num.today {
+  width: 1.75em;
+  height: 1.75em;
+  border-radius: 50%;
+  border: 2px solid #8c52ff;
 }
 .habit-list {
   width: 30em;
@@ -33,6 +58,10 @@
 }
 .list-group-item {
   height: 3em;
+  cursor: default;
+}
+.list-group-item.highlighted {
+  background: hsla(260, 100%, 66%, 0.3);
 }
 .nav-link:hover {
   cursor: pointer;

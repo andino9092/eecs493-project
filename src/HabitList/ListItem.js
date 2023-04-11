@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Habit from "../classes/Habit";
+import Habit from "../Habit";
 
 function ListItem(props) {
   const { name, emoji, view } = props.habit;
@@ -21,7 +21,7 @@ function ListItem(props) {
       />
       <div className="vr" style={{ color: "#adb5bd", width: "1.5px" }}></div>
       <div className="list-item">
-        <span className="list-emoji" role="img" aria-label="Cooked at home">
+        <span className="list-emoji" role="img" aria-label={emoji}>
           {emoji}
         </span>
         <span className="m-0">{name}</span>

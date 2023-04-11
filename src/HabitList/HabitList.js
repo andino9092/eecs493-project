@@ -8,11 +8,12 @@ function HabitList(props) {
     ? props.itemList.goodHabits
     : props.itemList.badHabits;
   const toggleItemView = (ind, category) => {
-    props.updateItemList((itemList) => {
-      category
-        ? (itemList.goodHabits[ind].view = !itemList.goodHabits[ind].view)
-        : (itemList.badHabits[ind].view = !itemList.badHabits[ind].view);
-    });
+    category
+      ? (props.itemList.goodHabits[ind].view = !props.itemList.goodHabits[ind]
+          .view)
+      : (props.itemList.badHabits[ind].view = !props.itemList.badHabits[ind]
+          .view);
+    props.updateItemList(() => {});
   };
 
   return (
@@ -28,10 +29,17 @@ function HabitList(props) {
             className="vr"
             style={{ color: "#adb5bd", width: "1.5px" }}
           ></div>
-          <span className="list-emoji" role="img" aria-label="Add new item">
+          <span
+            className="list-emoji"
+            role="img"
+            aria-label="Add new item"
+            onClick={props.toggleAddHabitModal}
+          >
             ➕
           </span>
-          <p className="m-0">Add new item</p>
+          <p className="list-add-habit m-0" onClick={props.toggleAddHabitModal}>
+            Add new item
+          </p>
         </li>
         {habitsToRender.map((habit, index) => (
           <ListItem
@@ -54,6 +62,7 @@ HabitList.propTypes = {
   setSelectedHabit: PropTypes.func.isRequired,
   habitTypeRadio: PropTypes.bool.isRequired,
   changeHabitType: PropTypes.func.isRequired,
+  toggleAddHabitModal: PropTypes.func.isRequired,
 };
 
 export default HabitList;

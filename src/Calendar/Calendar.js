@@ -33,6 +33,19 @@ function Calendar(props) {
     return props.date.setMonth(props.date.getMonth() + 1);
   };
 
+  const toggleLog = (day) => {
+    if (day === '') return;
+    const year = props.date.getFullYear();
+    const month = props.date.getMonth() + 1;
+    const habit = props.viewHabitsList[props.selectedHabit];
+    if (habit.hasRecordForDate(year, month, day)) {
+      habit.delLog(year, month, day);
+    } else {
+      habit.addLog(year, month, day);
+    }
+    props.updateItemList(() => {});
+  };
+
   const buildCalendar = (date) => {
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -82,13 +95,31 @@ function Calendar(props) {
         {calendar.map((week, weekind) => {
           return (
             <div className="cal-row row" key={"cal-week-" + weekind}>
-              {week.map((day, dayind) => (
-                <CalendarDay
-                  day={day}
-                  date={props.date}
-                  key={"cal-" + weekind + "-" + dayind}
-                />
-              ))}
+              {week.map((day, dayind) => {
+                let emojiList = [];
+                props.viewHabitsList.forEach((habit) => {
+                  if (
+                    habit.view &&
+                    habit.hasRecordForDate(
+                      props.date.getFullYear(),
+                      props.date.getMonth() + 1,
+                      day
+                    )
+                  ) {
+                    emojiList.push(habit.emoji);
+                  }
+                });
+
+                return (
+                  <CalendarDay
+                    day={day}
+                    date={props.date}
+                    emojiList={emojiList}
+                    toggleLog={() => toggleLog(day)}
+                    key={"cal-" + weekind + "-" + dayind}
+                  />
+                );
+              })}
             </div>
           );
         })}

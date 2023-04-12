@@ -8,7 +8,7 @@ function App() {
   const [habitTypeRadio, setHabitTypeRadio] = useState(true);
   const [selectedHabit, setSelectedHabit] = useState(0);
   const [calendarMonth, setCalendarMonth] = useState(new Date());
-  const [showAddHabitModal, setShowAddHabitModal] = useState(true);
+  const [showAddHabitModal, setShowAddHabitModal] = useState(false);
   const [itemList, setItemList] = useState({
     goodHabits: [
       new Habit("Cooked at home", "👨‍🍳"),
@@ -18,22 +18,20 @@ function App() {
   });
 
   useEffect(() => {
-    updateItemList((itemList) => {
-      itemList.goodHabits[0].addLog(2023, 4, 1);
-      itemList.goodHabits[0].addLog(2023, 4, 11);
-      itemList.goodHabits[1].addLog(2023, 4, 11);
-    });
+    itemList.goodHabits[0].addLog(2023, 4, 1);
+    itemList.goodHabits[0].addLog(2023, 4, 11);
+    itemList.goodHabits[1].addLog(2023, 4, 11);
+    updateItemList();
   }, []);
 
-  const updateItemList = (func) => {
+  const updateItemList = () => {
     const newItemList = { ...itemList };
-    func(newItemList);
     setItemList(newItemList);
     console.log(itemList);
   };
 
-  const changeHabitType = () => {
-    setHabitTypeRadio(!habitTypeRadio);
+  const changeHabitType = (bool) => {
+    setHabitTypeRadio(bool);
     setSelectedHabit(0);
   };
 

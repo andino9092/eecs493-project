@@ -43,7 +43,7 @@ function Calendar(props) {
     } else {
       habit.addLog(year, month, day);
     }
-    props.updateItemList(() => {});
+    props.updateItemList();
   };
 
   const buildCalendar = (date) => {

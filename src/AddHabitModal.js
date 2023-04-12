@@ -2,20 +2,35 @@ import React from "react";
 import PropTypes from "prop-types";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import { useState } from "react";
+import HabitTypeRadio from "./HabitList/HabitTypeRadio";
+import Habit from "./Habit";
 
 function AddHabitModal(props) {
+  const [habitName, setHabitName] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("😄");
   const [habitTypeRadio, setHabitTypeRadio] = useState(true);
 
-  const changeHabitType = () => {
-    setHabitTypeRadio(!habitTypeRadio);
+  const handleInputChange = (e) => {
+    setHabitName(e.target.value);
   };
 
-  const onEmojiClickHandler = (emojiData) => {
+  const handleEmojiClick = (emojiData) => {
     setSelectedEmoji(emojiData.emoji);
   };
 
-  const onAddHabit = () => {};
+  const handleAddHabit = () => {
+    if (habitName === "") {
+      alert("Habit name must not be empty!");
+    } else {
+      if (habitTypeRadio) {
+        props.itemList.goodHabits.push(new Habit(habitName, selectedEmoji));
+      } else {
+        props.itemList.badHabits.push(new Habit(habitName, selectedEmoji));
+      }
+      props.updateItemList();
+      props.toggleAddHabitModal();
+    }
+  };
 
   return !props.show ? (
     <></>
@@ -31,29 +46,21 @@ function AddHabitModal(props) {
           ✖️
         </span>
         <h4 className="modal-title">Add Habit to Track</h4>
-        <ul className="nav nav-pills nav-fill">
-          <li className="nav-item">
-            <p
-              className={"nav-link" + (habitTypeRadio ? " active" : "")}
-              onClick={changeHabitType}
-            >
-              Good Habit
-            </p>
-          </li>
-          <li className="nav-item">
-            <p
-              className={"nav-link" + (habitTypeRadio ? "" : " active")}
-              onClick={changeHabitType}
-            >
-              Bad Habit
-            </p>
-          </li>
-        </ul>
+        <HabitTypeRadio
+          isPlural={true}
+          habitTypeRadio={habitTypeRadio}
+          changeHabitType={setHabitTypeRadio}
+        />
         <div className="modal-input-wrapper d-flex justify-content-around">
           <div>
             <label htmlFor="habit-name">Name</label>
             <div className="d-flex gap-4 align-items-center">
-              <input className="habit-name-input" id="habit-name" type="text" />
+              <input
+                className="habit-name-input"
+                id="habit-name"
+                type="text"
+                onChange={handleInputChange}
+              />
               <span className="bold">Selected Emoji</span>
               <span
                 className="habit-emoji"
@@ -70,13 +77,13 @@ function AddHabitModal(props) {
             width="120%"
             height="25em"
             emojiStyle={EmojiStyle.APPLE}
-            onEmojiClick={onEmojiClickHandler}
+            onEmojiClick={handleEmojiClick}
           />
         </div>
         <button
           type="button"
           className="add-habit-btn btn"
-          onClick={onAddHabit}
+          onClick={handleAddHabit}
         >
           Add Habit
         </button>

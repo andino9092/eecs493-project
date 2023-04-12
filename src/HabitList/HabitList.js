@@ -13,7 +13,7 @@ function HabitList(props) {
           .view)
       : (props.itemList.badHabits[ind].view = !props.itemList.badHabits[ind]
           .view);
-    props.updateItemList(() => {});
+    props.updateItemList();
   };
 
   return (

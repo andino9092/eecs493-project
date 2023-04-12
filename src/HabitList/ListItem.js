@@ -13,12 +13,14 @@ function ListItem(props) {
       }
       onClick={props.setSelectedHabit}
     >
-      <input
-        className="checkbox-col"
-        type="checkbox"
-        onChange={props.toggleItemView}
-        checked={view}
-      />
+      <div className="checkbox-col d-flex justify-content-around">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          onChange={props.toggleItemView}
+          checked={view}
+        />
+      </div>
       <div className="vr" style={{ color: "#adb5bd", width: "1.5px" }}></div>
       <div className="list-item">
         <span className="list-emoji" role="img" aria-label={emoji}>

@@ -7,17 +7,17 @@ function HabitTypeRadio(props) {
       <li className="nav-item">
         <p
           className={"nav-link" + (props.habitTypeRadio ? " active" : "")}
-          onClick={props.changeHabitType}
+          onClick={() => props.changeHabitType(true)}
         >
-          Good Habits
+          Good Habit{!props.isPlural ? "s" : ""}
         </p>
       </li>
       <li className="nav-item">
         <p
           className={"nav-link" + (props.habitTypeRadio ? "" : " active")}
-          onClick={props.changeHabitType}
+          onClick={() => props.changeHabitType(false)}
         >
-          Bad Habits
+          Bad Habit{!props.isPlural ? "s" : ""}
         </p>
       </li>
     </ul>
@@ -25,6 +25,7 @@ function HabitTypeRadio(props) {
 }
 
 HabitTypeRadio.propTypes = {
+  isPlural: PropTypes.bool,
   habitTypeRadio: PropTypes.bool.isRequired,
   changeHabitType: PropTypes.func.isRequired,
 };

@@ -82,6 +82,10 @@
   margin-top: -1em;
   margin-bottom: -1em;
 }
+.form-check-input:checked {
+  background-color: #8c52ff;
+  border-color: #8c52ff;
+}
 .habit-list {
   width: 30em;
   min-width: 20em;
@@ -105,6 +109,9 @@
 }
 .list-group-item.highlighted {
   background: hsla(260, 100%, 66%, 0.3);
+}
+.modal-input-wrapper {
+  margin-top: -1em;
 }
 .modal-title {
   margin-top: 1em;

@@ -1,9 +1,8 @@
 # Habit Tracker
 
-
-## Tools Used
+## Frameworks & Libraries Used
 - React.js
 - Bootstrap
 
-## Libraries
+## NPM Packages
 - [Emoji Picker](https://www.npmjs.com/package/emoji-picker-react)

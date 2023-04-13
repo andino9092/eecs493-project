@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import { useState } from "react";
-import HabitTypeRadio from "./HabitList/HabitTypeRadio";
-import Habit from "./Habit";
+import HabitTypeRadio from "../HabitList/HabitTypeRadio";
+import Habit from "../Habit";
 
 function AddHabitModal(props) {
   const [habitName, setHabitName] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("😄");
-  const [habitTypeRadio, setHabitTypeRadio] = useState(true);
+
+  useEffect(() => {
+    setHabitName("");
+    setSelectedEmoji("😄");
+  }, [props.show]);
 
   const handleInputChange = (e) => {
     setHabitName(e.target.value);
@@ -22,7 +26,7 @@ function AddHabitModal(props) {
     if (habitName === "") {
       alert("Habit name must not be empty!");
     } else {
-      if (habitTypeRadio) {
+      if (props.habitType) {
         props.itemList.goodHabits.push(new Habit(habitName, selectedEmoji));
       } else {
         props.itemList.badHabits.push(new Habit(habitName, selectedEmoji));
@@ -45,12 +49,9 @@ function AddHabitModal(props) {
         >
           ✖️
         </span>
-        <h4 className="modal-title">Add Habit to Track</h4>
-        <HabitTypeRadio
-          isPlural={true}
-          habitTypeRadio={habitTypeRadio}
-          changeHabitType={setHabitTypeRadio}
-        />
+        <h4 className="modal-title">
+          Add {props.habitType ? "Good" : "Bad"} Habit to Track
+        </h4>
         <div className="modal-input-wrapper d-flex justify-content-around">
           <div>
             <label htmlFor="habit-name">Name</label>
@@ -96,6 +97,7 @@ AddHabitModal.propTypes = {
   toggleAddHabitModal: PropTypes.func.isRequired,
   itemList: PropTypes.object.isRequired,
   updateItemList: PropTypes.func.isRequired,
+  habitType: PropTypes.bool.isRequired,
 };
 
 export default AddHabitModal;

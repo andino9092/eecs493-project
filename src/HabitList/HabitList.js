@@ -47,6 +47,9 @@ function HabitList(props) {
             toggleItemView={() => toggleItemView(index, true)}
             highlighted={props.selectedHabit === index}
             setSelectedHabit={() => props.setSelectedHabit(index)}
+            toggleHabitInfoModal={() =>
+              props.toggleHabitInfoModal(props.habitTypeRadio, index)
+            }
             key={index}
           />
         ))}
@@ -63,6 +66,7 @@ HabitList.propTypes = {
   habitTypeRadio: PropTypes.bool.isRequired,
   changeHabitType: PropTypes.func.isRequired,
   toggleAddHabitModal: PropTypes.func.isRequired,
+  toggleHabitInfoModal: PropTypes.func.isRequired,
 };
 
 export default HabitList;

@@ -7,6 +7,13 @@
 }
 .add-habit-btn {
   float: right;
+  background-color: #8c52ff;
+  color: white;
+}
+.add-habit-btn:hover, .add-habit-btn:active {
+  float: right;
+  background-color: #7745db !important;
+  color: white !important;
 }
 .add-habit-modal {
   position: fixed;
@@ -31,10 +38,6 @@
 }
 .bold {
   font-weight: bold;
-}
-.btn {
-  background-color: #8c52ff;
-  color: white;
 }
 .calendar {
   min-width: max-content;
@@ -77,6 +80,9 @@
   border-radius: 50%;
   border: 2px solid #8c52ff;
 }
+.del-habit-btn {
+  float: right;
+}
 .emoji-picker {
   transform: scale(0.8) translate(-10%);
   margin-top: -1em;
@@ -86,15 +92,37 @@
   background-color: #8c52ff;
   border-color: #8c52ff;
 }
-.habit-list {
-  width: 30em;
-  min-width: 20em;
+.habit-data {
+  margin-bottom: 2em;
 }
 .habit-emoji {
   font-size: 1.2em;
 }
+.habit-info-modal {
+  position: fixed;
+  height: 15em;
+  width: 30em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2em;
+  background-color: white;
+  padding: 2em;
+}
+.habit-list {
+  width: 30em;
+  min-width: 20em;
+}
 .habit-name-input {
   width: 15em;
+}
+.habit-title {
+  font-size: 1.2em;
+}
+.info-button {
+  margin-left: auto;
+  margin-right: 0;
+  cursor: pointer;
 }
 .list-add-habit {
   cursor: pointer;
@@ -115,7 +143,7 @@
 }
 .modal-title {
   margin-top: 1em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.5em;
 }
 .nav-link:hover {
   cursor: pointer;

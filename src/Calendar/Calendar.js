@@ -34,16 +34,18 @@ function Calendar(props) {
   };
 
   const toggleLog = (day) => {
-    if (day === '') return;
+    if (day === "") return;
     const year = props.date.getFullYear();
     const month = props.date.getMonth() + 1;
     const habit = props.viewHabitsList[props.selectedHabit];
-    if (habit.hasRecordForDate(year, month, day)) {
-      habit.delLog(year, month, day);
-    } else {
-      habit.addLog(year, month, day);
+    if (habit) {
+      if (habit.hasRecordForDate(year, month, day)) {
+        habit.delLog(year, month, day);
+      } else {
+        habit.addLog(year, month, day);
+      }
+      props.updateItemList();
     }
-    props.updateItemList();
   };
 
   const buildCalendar = (date) => {

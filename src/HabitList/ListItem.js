@@ -28,6 +28,7 @@ function ListItem(props) {
         </span>
         <span className="m-0">{name}</span>
       </div>
+      <span className="info-button" onClick={props.toggleHabitInfoModal}>ⓘ</span>
     </li>
   );
 }
@@ -37,6 +38,7 @@ ListItem.propTypes = {
   toggleItemView: PropTypes.func.isRequired,
   highlighted: PropTypes.bool.isRequired,
   setSelectedHabit: PropTypes.func.isRequired,
+  toggleHabitInfoModal: PropTypes.func.isRequired
 };
 
 export default ListItem;

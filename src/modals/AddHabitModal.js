@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import EmojiPicker, { EmojiStyle } from "emoji-picker-react";
 import { useState } from "react";
-import HabitTypeRadio from "../HabitList/HabitTypeRadio";
 import Habit from "../Habit";
 
 function AddHabitModal(props) {

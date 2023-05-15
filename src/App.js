@@ -21,9 +21,9 @@ function App() {
   });
 
   useEffect(() => {
-    itemList.goodHabits[0].addLog(2023, 4, 1);
-    itemList.goodHabits[0].addLog(2023, 4, 11);
-    itemList.goodHabits[1].addLog(2023, 4, 11);
+    itemList.goodHabits[0].addLog(2023, 5, 1);
+    itemList.goodHabits[0].addLog(2023, 5, 11);
+    itemList.goodHabits[1].addLog(2023, 5, 11);
     updateItemList();
   }, []);
 
